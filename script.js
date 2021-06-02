@@ -3,11 +3,13 @@
   const inputBox = document.getElementById('texto-tarefa');
   let taskList = document.getElementById('lista-tarefas');
   const buttonClearList = document.getElementById('apaga-tudo');
+  const buttonRemoveFinishedItem = document.getElementById('remover-finalizados')
 
   buttonCreateTask.addEventListener('click', createTask);
   taskList.addEventListener('click', changeTaskBGColor);
   taskList.addEventListener('dblclick', strikeOutItem);
   buttonClearList.addEventListener('click', clearList);
+  buttonRemoveFinishedItem.addEventListener('click', removeFinishedItem);
   
   function createTask() {
     let inputText = inputBox.value;
@@ -45,5 +47,12 @@
     taskList.innerHTML = '';
   }
 
+// Para elaborar esta função abaixo, pesquisei e encontrei este link para usar de referência: https://stackoverflow.com/questions/44984867/javascript-remove-elements-by-class-name/44984940
 
+  function removeFinishedItem() {
+    let completedItems = document.querySelectorAll('.completed');
+    for (let completed of completedItems) {
+      completed.remove();
+    }
+  }
 }
