@@ -3,9 +3,7 @@
   const inputBox = document.getElementById('texto-tarefa');
   const taskList = document.getElementById('lista-tarefas');
   buttonCreateTask.addEventListener('click', createTask);
-  console.log(buttonCreateTask);
-  console.log(inputBox);
-  
+
   function createTask() {
     let inputText = inputBox.value;
     inputBox.value = '';
@@ -13,5 +11,12 @@
     itemList.className = 'item-lista';
     itemList.innerText = inputText;
     taskList.appendChild(itemList);
+  }
+  
+  taskList.addEventListener('click', changeTaskBGColor)
+  
+  function changeTaskBGColor(event) {
+      let taskListItem = event.target;
+      taskListItem.style.backgroundColor = 'rgb(128, 128, 128)';
   }
 }
