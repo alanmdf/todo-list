@@ -2,10 +2,12 @@
   const buttonCreateTask = document.getElementById('criar-tarefa');
   const inputBox = document.getElementById('texto-tarefa');
   let taskList = document.getElementById('lista-tarefas');
+  const buttonClearList = document.getElementById('apaga-tudo');
 
   buttonCreateTask.addEventListener('click', createTask);
-  taskList.addEventListener('click',changeTaskBGColor);
+  taskList.addEventListener('click', changeTaskBGColor);
   taskList.addEventListener('dblclick', strikeOutItem);
+  buttonClearList.addEventListener('click', clearList);
   
   function createTask() {
     let inputText = inputBox.value;
@@ -29,7 +31,7 @@
     }
   }
   
-  function strikeOutItem (event) {
+  function strikeOutItem(event) {
     if (event.target.classList.contains('completed')) {
       event.target.classList.remove('completed');
       event.target.style.textDecoration = 'none';
@@ -38,4 +40,10 @@
       event.target.style.textDecoration =  'line-through';
     }
   }
+
+  function clearList() {
+    taskList.innerHTML = '';
+  }
+
+
 }
