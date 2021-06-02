@@ -1,9 +1,12 @@
   window.onload = function() {
   const buttonCreateTask = document.getElementById('criar-tarefa');
   const inputBox = document.getElementById('texto-tarefa');
-  const taskList = document.getElementById('lista-tarefas');
-  buttonCreateTask.addEventListener('click', createTask);
+  let taskList = document.getElementById('lista-tarefas');
 
+  buttonCreateTask.addEventListener('click', createTask);
+  taskList.addEventListener('click',changeTaskBGColor);
+  taskList.addEventListener('dblclick', strikeOutItem);
+  
   function createTask() {
     let inputText = inputBox.value;
     inputBox.value = '';
@@ -11,14 +14,10 @@
     itemList.className = 'list-item';
     itemList.innerText = inputText;
     taskList.appendChild(itemList);
-    console.log(taskList);
   }
   
-  taskList.addEventListener('click', changeTaskBGColor);
-
-  let listItemsArray = document.getElementsByClassName('list-item');
-  
-  function changeTaskBGColor(event) {
+  function changeTaskBGColor(event) {    
+    let listItemsArray = document.getElementsByClassName('list-item');
     for (let index = 0; index < listItemsArray.length; index += 1) {
       if (listItemsArray[index].classList.contains('selected')) {
         listItemsArray[index].classList.remove('selected');
@@ -27,6 +26,16 @@
         event.target.classList.add('selected');
         event.target.style.backgroundColor = 'rgb(128, 128, 128)';
       }
+    }
+  }
+  
+  function strikeOutItem (event) {
+    if (event.target.classList.contains('completed')) {
+      event.target.classList.remove('completed');
+      event.target.style.textDecoration = 'none';
+    } else {
+      event.target.classList.add('completed');
+      event.target.style.textDecoration =  'line-through';
     }
   }
 }
