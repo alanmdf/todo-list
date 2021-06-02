@@ -8,15 +8,25 @@
     let inputText = inputBox.value;
     inputBox.value = '';
     let itemList = document.createElement('li');
-    itemList.className = 'item-lista';
+    itemList.className = 'list-item';
     itemList.innerText = inputText;
     taskList.appendChild(itemList);
+    console.log(taskList);
   }
   
-  taskList.addEventListener('click', changeTaskBGColor)
+  taskList.addEventListener('click', changeTaskBGColor);
+
+  let listItemsArray = document.getElementsByClassName('list-item');
   
   function changeTaskBGColor(event) {
-      let taskListItem = event.target;
-      taskListItem.style.backgroundColor = 'rgb(128, 128, 128)';
+    for (let index = 0; index < listItemsArray.length; index += 1) {
+      if (listItemsArray[index].classList.contains('selected')) {
+        listItemsArray[index].classList.remove('selected');
+        listItemsArray[index].style.backgroundColor = 'white';
+      } else {
+        event.target.classList.add('selected');
+        event.target.style.backgroundColor = 'rgb(128, 128, 128)';
+      }
+    }
   }
 }
