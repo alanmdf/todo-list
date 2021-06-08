@@ -23,10 +23,10 @@ window.onload = function () {
         listItemsArray[index].classList.remove('selected');
         listItemsArray[index].style.backgroundColor = 'white';
       } else {
-        event.target.classList.add('selected');
         event.target.style.backgroundColor = 'rgb(128, 128, 128)';
       }
     }
+    event.target.classList.add('selected');
   }
 
   taskList.addEventListener('click', changeTaskBGColor);
